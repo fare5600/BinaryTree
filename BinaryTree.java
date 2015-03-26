@@ -10,30 +10,26 @@ public void displayInOrder()
 System.out.println("**** In Order ****");
 if(this.root == null)
 {
-	if(root != null){
-        displayInOrder(root.getLeftNode());
-        System.out.print("  "+root.getData());
-        displayInOrder(root.getRightNode());
-    }
-     
-System.out.println("Empty Tree");
+	System.out.println("Empty Tree");
 }
-}
+else
+{
 
-private void displayInOrder(Node leftNode) {
-	// TODO Auto-generated method stub
-	
+	this.root.visitInOrder();
+}
 }
 public void displayPostOrder()
 {
 System.out.println("**** Post Order ****");
 if(this.root == null)
 {
-	root = theNode;
-}
 System.out.println("Empty Tree");
 }
-
+else 
+{
+	this.root.visitInOrder();
+}
+}
 public void add(int value)
 {
 Node theNode = new Node(value);

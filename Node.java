@@ -10,6 +10,30 @@ this.payload = payload;
 this.leftNode = null;
 this.rightNode = null;
 }
+public void visitInOrder()
+{
+	if(this.leftNode!= null)
+	{
+		this.leftNode.visitInOrder();
+	}
+	System.out.println(this.payload);
+	if(this.rightNode != null)
+	{ 
+		this.rightNode.visitInOrder();
+	}
+}
+public void visitPostOrder()
+{
+	if(this.leftNode!= null)
+	{
+		this.leftNode.visitInOrder();
+	}
+	System.out.println(this.payload);
+	if(this.rightNode != null)
+	{ 
+		this.leftNode.visitInOrder();
+	}
+}
 public void addNode(Node n)
 {
 if(n.getPayload() <= this.payload)
