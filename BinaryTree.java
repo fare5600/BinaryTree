@@ -13,15 +13,36 @@ this.leftTree = null;
 this.rightTree = null;
 }
 public boolean search(int value)
-{	if 
-	(BinaryTree.this.isEmpty == true)
-return true;
-else 
-	return false;
-
-	
-//return true if value is in the tree
-//return false if value is not in the tree
+{	//if 
+	//(BinaryTree.this.isEmpty == true)
+//return true;
+//else 
+	//return false;
+	if(this.isEmpty)
+	{
+		return false;
+	}
+	else
+	{
+		if(this.payload== value)
+		{
+			return true;
+		}
+		else
+		{
+			if(value < payload)
+			{
+				if(this.leftTree == null)
+				{
+					return false;
+					}
+				else
+				{
+					return this.leftTree.search(value);
+				}
+			}
+		}
+	}
 }
 public boolean isEmpty() {
 	return isEmpty;
