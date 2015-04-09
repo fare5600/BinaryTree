@@ -22,22 +22,17 @@ public class BinaryTree
 		this.parent = null;
 	}
 	
-	private void changeDepth(int amount)
+	private void updateDepths(int newDepth)
 	{
-		this.depth += amount;
+		this.depth = newDepth;
 		if(this.leftTree != null)
 		{
-			this.leftTree.changeDepth(amount);
+			this.leftTree.updateDepths(this.depth+1);
 		}
 		if(this.rightTree != null)
 		{
-			this.rightTree.changeDepth(amount);
+			this.rightTree.updateDepths(this.depth+1);
 		}
-		else
-			if(this.leftTree != null)
-			{
-				this.leftTree.changeDepth(amount);
-			}
 	}
 	
 	private void rotateRight(BinaryTree pivot)
