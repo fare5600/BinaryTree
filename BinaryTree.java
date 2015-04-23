@@ -1,6 +1,6 @@
 public class BinaryTree 
 {
-	//private Node root;
+	private BinaryTree root;
 	private boolean isEmpty;
 	private int payload;
 	private BinaryTree leftTree;
@@ -11,6 +11,7 @@ public class BinaryTree
 	public BinaryTree()
 	{
 		this(0);
+		this.root = this;
 	}
 	
 	private BinaryTree(int depth)
@@ -20,6 +21,7 @@ public class BinaryTree
 		this.rightTree = null;
 		this.depth = depth;
 		this.parent = null;
+		this.root = root;
 	}
 	
 	private void updateDepths(int newDepth)
@@ -304,15 +306,15 @@ public class BinaryTree
 		{
 			this.payload = value;
 			this.isEmpty = false;
-		}
-		else
-		{
-			if(value <= this.payload)
+			if(!this.root.isBalanced())
 			{
-				if(this.leftTree == null)
+				if(this.root.leftTree == null)
 				{
-					this.leftTree = new BinaryTree(this.depth+1);
-					this.leftTree.parent = this;
+					//this.leftTree = new BinaryTree(this.depth+1, this.root);
+					//this.leftTree.parent = this;
+					//this.leftTree.add(value);
+					//if(!this.root.isBalanced())
+					
 				}
 				this.leftTree.add(value);
 			}
@@ -336,19 +338,21 @@ public class BinaryTree
 				if(this.leftTree == null)
 				{
 					//the right tree is out of balance
-					this.rightTree.rotateRight(this.rightTree.leftTree);
-				}
-				else
-					{
-						this.leftTree.rotateRight(this.leftTree.leftTree);
-					}
+					if(this.rightTree.leftTree != null)
+						{
+						this.rightTree.rotateRight(this.rightTree.leftTree);
+						}
+					this.rightTree.rotateLeft(this.rightTree);
+					//missing a line
 				}
 				else if(this.rightTree == null)
 				{
-					//the left tree is out of balance
-					this.leftTree.rotateLeft(this.leftTree.rightTree);
-					//missing a line
+					if(this.leftTree.rightTree != null)//the left tree is out of balance
+					{
+						this.leftTree.rotateLeft(this.leftTree.rightTree);
 				}
+				this.leftTree.rotateRight(this.leftTree);
+			}
 				else
 				{
 					//we know we have a left and a right tree
@@ -359,18 +363,13 @@ public class BinaryTree
 						
 					}
 					else
-					{ 
-						this.leftTree.rotateLeft(this.leftTree.rightTree);
-					}
-					else
-				
 					{
 						this.rightTree.rotateRight(this.rightTree.leftTree);
-						//missing a line
+						this.rightTree.rotateRight(this.rightTree);
+//missing a line
 					}
 				}
-		
 			}
-		
+		}
 	}
 }

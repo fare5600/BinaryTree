@@ -24,7 +24,7 @@ bt.add(11);
 bt.add(24);
 bt.add(1);
 bt.add(3);
-bt.add(38);
+bt.add(7);
 System.out.println(bt.isBalanced());
 }
 }
